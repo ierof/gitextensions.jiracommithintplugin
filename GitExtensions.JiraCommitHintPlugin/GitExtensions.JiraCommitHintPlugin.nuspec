@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+	<metadata>
+		<id>$id$</id>
+		<version>$version$</version>
+		<authors>$author$</authors>
+		<description>$description$</description>
+		<projectUrl>$projectUrl$</projectUrl>
+		<tags>$tags$</tags>
+		<dependencies>
+			<dependency id="GitExtensions.Extensibility" version="[0.1.0, 1.0.0)" />
+			<dependency id="Atlassian.SDK" version="13.0.0" />
+			<dependency id="NString" version="2.1.1" />
+			<dependency id="System.ComponentModel.Composition" version="7.0.0" />
+			<dependency id="Microsoft.VisualStudio.Threading" version="17.4.27" />
+		</dependencies>
+	</metadata>
+	<files>
+		<file src="$targetDir$*.*" exclude="**\*.pdb;**\*.xml;**\*.json" target="lib" />
+	</files>
+</package>

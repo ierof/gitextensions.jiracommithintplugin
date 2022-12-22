@@ -1,0 +1,78 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net6.0-windows</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<UseWindowsForms>true</UseWindowsForms>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<GitExtensionsDownloadPath Condition="$(GitExtensionsDownloadPath) == ''">..\..\gitextensions.shared</GitExtensionsDownloadPath>
+		<!-- path is relative to $(ProjectDir) -->
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Atlassian.SDK" Version="13.0.0" />
+		<PackageReference Include="GitExtensions.Extensibility" Version="0.3.0.57" />
+		<PackageReference Include="NString" Version="2.1.1" />
+		<PackageReference Include="System.ComponentModel.Composition" Version="7.0.0" />
+		<PackageReference Include="Microsoft.VisualStudio.Threading" Version="17.4.27" />
+	</ItemGroup>
+
+	<!-- Reference to GitExtensions dlls. -->
+	<ItemGroup>
+		<Reference Include="GitUIPluginInterfaces">
+			<HintPath>$(GitExtensionsDownloadPath)\GitUIPluginInterfaces.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="ResourceManager">
+			<HintPath>$(GitExtensionsDownloadPath)\ResourceManager.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="GitExtUtils">
+			<HintPath>$(GitExtensionsDownloadPath)\GitExtUtils.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="GitCommands">
+			<HintPath>$(GitExtensionsDownloadPath)\GitCommands.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+	</ItemGroup>
+
+
+	<!-- Pack as .nupkg with dependency on GitExtensions.Extensibility -->
+	<PropertyGroup>
+		<NuspecFile>$(MSBuildThisFileDirectory)$(MSBuildProjectName).nuspec</NuspecFile>
+		<Authors>IErof</Authors>
+		<Company>freelance</Company>
+		<Description>A plugin for Git Extensions to add commit comment from your Jira.</Description>
+		<PackageProjectUrl>https://github.com/ierof/gitextensions.jiracommithintplugin</PackageProjectUrl>
+		<PackageTags>GitExtensions</PackageTags>
+	</PropertyGroup>
+	<Target Name="SetPackageProperties" BeforeTargets="GenerateNuspec">
+		<PropertyGroup>
+			<NuspecProperties>
+				id=$(PackageId);
+				version=$(PackageVersion);
+				configuration=$(Configuration);
+				tags=$(PackageTags.Replace(';',' '));
+				projectUrl=$(PackageProjectUrl);
+				iconUrl=$(PackageIconUrl);
+				repositoryUrl=$(RepositoryUrl);
+				repositoryType=$(RepositoryType);
+				repositoryCommit=$(RepositoryCommit);
+				author=$(Authors);
+				copyright=$(Copyright);
+				description=$(Description);
+				targetDir=$(TargetDir);
+			</NuspecProperties>
+		</PropertyGroup>
+	</Target>
+
+</Project>
