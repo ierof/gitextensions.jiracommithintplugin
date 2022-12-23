@@ -7,6 +7,8 @@
 		<description>$description$</description>
 		<projectUrl>$projectUrl$</projectUrl>
 		<tags>$tags$</tags>
+		<readme>docs\README.md</readme>
+		<license type="expression">Apache-2.0</license>
 		<dependencies>
 			<dependency id="GitExtensions.Extensibility" version="[0.1.0, 1.0.0)" />
 			<dependency id="Atlassian.SDK" version="13.0.0" />
@@ -16,6 +18,7 @@
 		</dependencies>
 	</metadata>
 	<files>
+		<file src="..\README.md" target="docs\" />
 		<file src="$targetDir$*.*" exclude="**\*.pdb;**\*.xml;**\*.json" target="lib" />
 	</files>
 </package>

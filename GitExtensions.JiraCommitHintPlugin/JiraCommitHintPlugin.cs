@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel.Composition;
 using System.Diagnostics;
 using Atlassian.Jira;
-using GitExtensions.Plugins.JiraCommitHintPlugin.Properties;
 using GitExtUtils.GitUI;
 using GitUI;
 using GitUIPluginInterfaces;
@@ -44,7 +43,7 @@ namespace GitExtensions.JiraCommitHintPlugin
             Id = new Guid("B0128E39-D312-47DA-B18A-43F5CA726D7D");
             Name = "Jira Commit Hint";
             Translate();
-            Icon = Resources.IconJira;
+            Icon = Resources.Resources.IconJira;
 
             _credentialsSettings = new CredentialsSetting("JiraCredentials", "Jira credentials", () => _gitModule?.WorkingDir);
         }
